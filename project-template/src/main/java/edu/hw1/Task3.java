@@ -2,7 +2,7 @@ package edu.hw1;
 
 public class Task3 {
 
-    public static boolean arrayInArray(int[] a1, int[] a2) {
+    public static boolean isNestable(int[] a1, int[] a2) {
         int minA1 = 100000000;
         int maxA1 = -100000000;
         int minA2 = 1000000000;

@@ -7,9 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task5Test {
 
     @Test
-    void palindrom() {
-        boolean expected = true;
-        boolean actual = Task5.palindrom(11211230);
-        assertEquals(expected, actual);
+    void isPalindromeDescendant() {
+        assertAll(
+            () -> assertEquals(Task5.isPalindromeDescendant(11211230), true),
+            () -> assertEquals(Task5.isPalindromeDescendant(13001120), true),
+            () -> assertEquals(Task5.isPalindromeDescendant(23336014), true),
+            () -> assertEquals(Task5.isPalindromeDescendant(11), true)
+        );
     }
 }

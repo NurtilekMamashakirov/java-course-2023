@@ -8,8 +8,10 @@ class Task2Test {
 
     @Test
     void countNumbers() {
-        int expected = 5;
-        int actual = Task2.countNumbers(57432);
-        assertEquals(expected, actual);
+        assertAll(
+            () -> assertEquals(Task2.countDigits(4666), 4),
+            () -> assertEquals(Task2.countDigits(544), 3),
+            () -> assertEquals(Task2.countDigits(0), 1)
+        );
     }
 }

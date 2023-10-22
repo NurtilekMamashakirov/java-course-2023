@@ -7,8 +7,10 @@ class Task6Test {
 
     @Test
     void countK() {
-        int expected = 5;
-        int actual = Task6.countK(6621, 1);
-        assertEquals(expected, actual);
+        assertAll(
+            () -> assertEquals(Task6.countK(6621, 1), 5),
+            () -> assertEquals(Task6.countK(6554, 1), 4),
+            () -> assertEquals(Task6.countK(1234, 1), 3)
+        );
     }
 }

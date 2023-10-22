@@ -2,7 +2,7 @@ package edu.hw1;
 
 public class Task5 {
 
-    public static boolean palindrom(int number) {
+    public static boolean isPalindromeDescendant(int number) {
         String numberStr = String.valueOf(number);
         while (true) {
             if (numberStr.length() % 2 == 1)

@@ -8,8 +8,10 @@ class Task4Test {
 
     @Test
     void fixStrings() {
-        String expected = "This is a mixed up string.";
-        String actual = Task4.fixStrings("hTsii  s aimex dpus rtni.g");
-        assertEquals(expected, actual);
+        assertAll(
+            () -> assertEquals(Task4.fixStrings("123456"), "214365"),
+            () -> assertEquals(Task4.fixStrings("hTsii  s aimex dpus rtni.g"), "This is a mixed up string."),
+            () -> assertEquals(Task4.fixStrings("badce"), "abcde")
+        );
     }
 }
