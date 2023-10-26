@@ -1,17 +1,24 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task4Test {
+    static Arguments[] exampleAndExpected() {
+        return new Arguments[]{
+            Arguments.of("123456", "214365"),
+            Arguments.of("hTsii  s aimex dpus rtni.g", "This is a mixed up string."),
+            Arguments.of("badce", "abcde")
+        };
+    }
 
-    @Test
-    void fixStrings() {
-        assertAll(
-            () -> assertEquals(Task4.fixStrings("123456"), "214365"),
-            () -> assertEquals(Task4.fixStrings("hTsii  s aimex dpus rtni.g"), "This is a mixed up string."),
-            () -> assertEquals(Task4.fixStrings("badce"), "abcde")
-        );
+    @ParameterizedTest
+    @MethodSource("exampleAndExpected")
+    void fixStrings(String example, String expected) {
+        assertThat(Task4.fixStrings(example)).isEqualTo(expected);
     }
 }
