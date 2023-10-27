@@ -42,6 +42,8 @@ class Task8Test {
     };
 
     static Arguments[] exampleAndExpected() {
+
+
         return new Arguments[]{
             Arguments.of(example1, true),
             Arguments.of(example2, false),
