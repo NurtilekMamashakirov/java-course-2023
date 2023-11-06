@@ -26,6 +26,8 @@ public class WeightError extends Error {
                     legalWeight = false;
                 }
             }
+            default -> {
+            }
         }
         if (legalWeight) {
             super.setMessage("No weight error.");

@@ -2,7 +2,7 @@ package edu.hw4.Errors;
 
 import edu.hw4.Animal;
 
-public class HeightError extends Error{
+public class HeightError extends Error {
     public HeightError(Animal animal) {
         Boolean legalHeight = true;
         switch (animal.type()) {
@@ -31,10 +31,13 @@ public class HeightError extends Error{
                     legalHeight = false;
                 }
             }
+            default -> {
+            }
         }
-        if (legalHeight)
+        if (legalHeight) {
             super.setMessage("No height error.");
-        else
+        } else {
             super.setMessage("This type of animal can't have height " + animal.height() + "!");
+        }
     }
 }

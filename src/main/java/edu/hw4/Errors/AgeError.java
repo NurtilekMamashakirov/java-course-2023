@@ -26,6 +26,9 @@ public class AgeError extends Error {
                     legalAge = false;
                 }
             }
+            default -> {
+
+            }
         }
         if (legalAge) {
             super.setMessage("No age error.");

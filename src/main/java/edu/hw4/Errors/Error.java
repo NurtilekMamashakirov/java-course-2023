@@ -3,7 +3,6 @@ package edu.hw4.Errors;
 public class Error {
     private String message;
 
-
     public String getMessage() {
         return message;
     }
@@ -13,8 +12,12 @@ public class Error {
     }
 
     @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Error error = (Error) o;
 
