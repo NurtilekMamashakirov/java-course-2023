@@ -12,8 +12,6 @@ public class ValidationError {
     private HeightError heightError;
     private WeightError weightError;
 
-
-
     public void checkAllErrors(Animal animal) {
         nameError = new NameError(animal);
         ageError = new AgeError(animal);
@@ -69,11 +67,11 @@ public class ValidationError {
     }
 
     @Override public String toString() {
-        return "ValidationError{" +
-            "nameError=" + nameError +
-            ", ageError=" + ageError +
-            ", heightError=" + heightError +
-            ", weightError=" + weightError +
-            '}';
+        return "ValidationError{"
+            + "nameError=" + nameError
+            + ", ageError=" + ageError
+            + ", heightError=" + heightError
+            + ", weightError=" + weightError
+            + '}';
     }
 }
