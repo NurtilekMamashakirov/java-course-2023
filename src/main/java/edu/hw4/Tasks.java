@@ -11,14 +11,15 @@ public class Tasks {
 
     //task1
     public List<Animal> sortByHeight(List<Animal> animalList) {
-        animalList = animalList.stream().sorted(Comparator.comparing(Animal::height)).toList();
-        return animalList;
+        List<Animal> animals = animalList.stream().sorted(Comparator.comparing(Animal::height)).toList();
+        return animals;
     }
 
     //task2
     public List<Animal> reverseSortByWeightAndChooseK(List<Animal> animalList, Integer k) {
-        animalList = animalList.stream().sorted(Comparator.comparing(Animal::weight).reversed()).limit(k).toList();
-        return animalList;
+        List<Animal> animals =
+            animalList.stream().sorted(Comparator.comparing(Animal::weight).reversed()).limit(k).toList();
+        return animals;
     }
 
     //task3
@@ -36,11 +37,12 @@ public class Tasks {
 
     //task4
     public Animal longestName(List<Animal> animalList) {
-        animalList =
-            animalList.stream().sorted((Animal o1, Animal o2) -> Integer.compare(o2.name().length(), o1.name().length()))
+        List<Animal> animals =
+            animalList.stream().sorted((Animal o1, Animal o2) ->
+                    Integer.compare(o2.name().length(), o1.name().length()))
                 .limit(1)
                 .toList();
-        return animalList.get(0);
+        return animals.get(0);
     }
 
     //task5
@@ -97,7 +99,7 @@ public class Tasks {
 
     //task10
     public List<Animal> animalsWithAgeNotEqualsPaws(List<Animal> animalList) {
-        animalList = animalList.stream().filter(animal -> {
+        List<Animal> animals = animalList.stream().filter(animal -> {
             if (animal.type().equals(Animal.Type.DOG) || animal.type().equals(Animal.Type.CAT)) {
                 return animal.age() != 4;
             } else if (animal.type().equals(Animal.Type.BIRD)) {
@@ -108,7 +110,7 @@ public class Tasks {
                 return animal.age() != 0;
             }
         }).toList();
-        return animalList;
+        return animals;
     }
 
     //task11
