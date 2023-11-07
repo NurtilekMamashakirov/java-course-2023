@@ -4,9 +4,12 @@ import edu.hw4.Animal;
 
 public class NameError extends Error {
     public NameError(Animal animal) {
+
+
+
         Boolean checkForSymbols = true;
         for (char symbol : animal.name().toCharArray()) {
-            if (!((symbol <= 122 && symbol >= 97) || (symbol >= 65 && symbol <= 90) || (symbol == 32))) {
+            if (!((symbol <= 'Z' && symbol >= 'A') || (symbol >= 'a' && symbol <= 'z') || (symbol == ' '))) {
                 checkForSymbols = false;
             }
         }
