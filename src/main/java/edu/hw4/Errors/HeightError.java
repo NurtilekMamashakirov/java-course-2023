@@ -27,36 +27,37 @@ public class HeightError extends Error {
         final int SPIDER_MAX_HEIGHT = 30;
         final int SPIDER_MIN_HEIGHT = 0;
 
+        boolean legalHeight = true;
+
         switch (animal.type()) {
             case DOG -> {
                 if (!(animal.height() <= DOG_MAX_HEIGHT && animal.height() >= DOG_MIN_HEIGHT)) {
-                    return false;
+                    legalHeight = false;
                 }
             }
             case CAT -> {
                 if (!(animal.height() <= CAT_MAX_HEIGHT && animal.height() >= CAT_MIN_HEIGHT)) {
-                    return false;
+                    legalHeight = false;
                 }
             }
             case FISH -> {
                 if (!(animal.height() <= FISH_MAX_HEIGHT && animal.height() >= FISH_MIN_HEIGHT)) {
-                    return false;
+                    legalHeight = false;
                 }
             }
             case BIRD -> {
                 if (!(animal.height() <= BIRD_MAX_HEIGHT && animal.height() >= BIRD_MIN_HEIGHT)) {
-                    return false;
+                    legalHeight = false;
                 }
             }
             case SPIDER -> {
                 if (!(animal.height() <= SPIDER_MAX_HEIGHT && animal.height() >= SPIDER_MIN_HEIGHT)) {
-                    return false;
+                    legalHeight = false;
                 }
             }
             default -> {
-                return true;
             }
         }
-        return true;
+        return legalHeight;
     }
 }
