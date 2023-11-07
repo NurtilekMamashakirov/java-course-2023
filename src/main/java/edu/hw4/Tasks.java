@@ -85,13 +85,18 @@ public class Tasks {
     //task9
     public Integer countPaws(List<Animal> animalList) {
         AtomicReference<Integer> countPaws = new AtomicReference<>(0);
+
+        final int DOG_AND_CAT_PAWS = 4;
+        final int BIRD_PAWS = 2;
+        final int SPIDER_PAWS = 8;
+
         animalList.stream().forEach(animal -> {
             if (animal.type().equals(Animal.Type.DOG) || animal.type().equals(Animal.Type.CAT)) {
-                countPaws.getAndSet(countPaws.get() + 4);
+                countPaws.getAndSet(countPaws.get() + DOG_AND_CAT_PAWS);
             } else if (animal.type().equals(Animal.Type.BIRD)) {
-                countPaws.getAndSet(countPaws.get() + 2);
+                countPaws.getAndSet(countPaws.get() + BIRD_PAWS);
             } else if (animal.type().equals(Animal.Type.SPIDER)) {
-                countPaws.getAndSet(countPaws.get() + 8);
+                countPaws.getAndSet(countPaws.get() + SPIDER_PAWS);
             }
         });
         return countPaws.get();
@@ -99,15 +104,21 @@ public class Tasks {
 
     //task10
     public List<Animal> animalsWithAgeNotEqualsPaws(List<Animal> animalList) {
+
+        final int DOG_AND_CAT_PAWS = 4;
+        final int BIRD_PAWS = 2;
+        final int SPIDER_PAWS = 8;
+        final int FISH_PAWS = 0;
+
         List<Animal> animals = animalList.stream().filter(animal -> {
             if (animal.type().equals(Animal.Type.DOG) || animal.type().equals(Animal.Type.CAT)) {
-                return animal.age() != 4;
+                return animal.age() != DOG_AND_CAT_PAWS;
             } else if (animal.type().equals(Animal.Type.BIRD)) {
-                return animal.age() != 2;
+                return animal.age() != BIRD_PAWS;
             } else if (animal.type().equals(Animal.Type.SPIDER)) {
-                return animal.age() != 8;
+                return animal.age() != SPIDER_PAWS;
             } else {
-                return animal.age() != 0;
+                return animal.age() != FISH_PAWS;
             }
         }).toList();
         return animals;
@@ -115,7 +126,8 @@ public class Tasks {
 
     //task11
     public List<Animal> canBiteAndHigher100(List<Animal> animalList) {
-        return animalList.stream().filter(animal -> animal.bites() && animal.height() > 100).toList();
+        final int HEIGHT_100 = 100;
+        return animalList.stream().filter(animal -> animal.bites() && animal.height() > HEIGHT_100).toList();
     }
 
     //taks12
