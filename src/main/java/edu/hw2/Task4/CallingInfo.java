@@ -1,7 +1,5 @@
 package edu.hw2.Task4;
 
-import java.util.Arrays;
-
 public record CallingInfo(String className, String methodName) {
 
     public static CallingInfo callingInfo() {
@@ -9,8 +7,9 @@ public record CallingInfo(String className, String methodName) {
         String faultyPath = stackTrace[1].toString();
         String path = "";
         for (int i = 0; i < faultyPath.length(); i++) {
-            if (faultyPath.charAt(i) == '(')
+            if (faultyPath.charAt(i) == '(') {
                 break;
+            }
             path += faultyPath.charAt(i);
         }
         String[] arrayOfPath = path.split("\\.");

@@ -13,7 +13,7 @@ public final class PopularCommandExecutor {
         this.maxAttempts = maxAttempts;
     }
 
-    public void updatePackages() throws Exception{
+    public void updatePackages() throws Exception {
         tryExecute("apt update && apt upgrade -y");
     }
 
