@@ -2,6 +2,10 @@ package edu.hw1;
 
 public class Task1 {
 
+    private Task1() {
+
+    }
+
     public static int minutesToSeconds(String minutesAndSeconds) {
         int minutes = Integer.parseInt(minutesAndSeconds.split(":")[0]);
         int seconds = Integer.parseInt(minutesAndSeconds.split(":")[1]);

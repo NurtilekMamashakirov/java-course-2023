@@ -2,6 +2,10 @@ package edu.hw1;
 
 public class Task7 {
 
+    private Task7() {
+
+    }
+
     public static int rotateRight(int n, int shift) {
         String binary = Integer.toBinaryString(n);
         int[] binary2 = new int[binary.length()];

@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 public class Task6 {
 
+    private Task6() {
+
+    }
+
     public static int countK(int number, int count) {
         String numberStr = String.valueOf(number);
         int[] arrayOfNumber = new int[numberStr.length()];

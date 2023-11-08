@@ -1,6 +1,11 @@
 package edu.hw1;
 
 public class Task4 {
+
+    private Task4() {
+
+    }
+
     public static String fixStrings(String str) {
         String fixedString = "";
         if (str.length() % 2 == 0) {
