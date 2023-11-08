@@ -10,8 +10,7 @@ public class Task5 {
             return new ArrayList<Contact>();
         }
         List<Contact> contacts = new ArrayList<>();
-        for (String name :
-            names) {
+        for (String name : names) {
             String[] arrayOfNameAndSurname = name.split(" ");
             if (arrayOfNameAndSurname.length == 2) {
                 contacts.add(new Contact(arrayOfNameAndSurname[1], arrayOfNameAndSurname[0]));
@@ -66,7 +65,7 @@ public class Task5 {
                 return false;
             }
         }
-        return (surname1.length() < surname2.length()) ? true : false;
+        return surname1.length() < surname2.length();
     }
 
 }

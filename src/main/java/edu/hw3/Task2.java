@@ -7,11 +7,10 @@ public class Task2 {
 
     public List<String> clusterize(String brackets) {
         List<String> bracketsList = new ArrayList<>();
-        Integer openedBrackets = 0;
-        Integer closedBrackets = 0;
+        int openedBrackets = 0;
+        int closedBrackets = 0;
         String bracketsCluster = "";
-        for (Character bracket :
-            brackets.toCharArray()) {
+        for (Character bracket : brackets.toCharArray()) {
             if (bracket == '(') {
                 openedBrackets++;
             } else if (bracket == ')') {

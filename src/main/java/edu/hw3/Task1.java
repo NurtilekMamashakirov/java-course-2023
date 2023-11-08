@@ -10,7 +10,7 @@ public class Task1 {
     private HashMap<Character, Integer> getAlphabetLowCase() {
         HashMap<Character, Integer> alphabet = new HashMap<>();
         for (int i = 0; i < 26; i++) {
-            alphabet.put(Character.valueOf((char) (i + 97)), i);
+            alphabet.put((char) (i + 'a'), i);
         }
         return alphabet;
     }
@@ -18,7 +18,7 @@ public class Task1 {
     private HashMap<Character, Integer> getAlphabetUpCase() {
         HashMap<Character, Integer> alphabet = new HashMap<>();
         for (int i = 0; i < 26; i++) {
-            alphabet.put(Character.valueOf((char) (i + 65)), i);
+            alphabet.put((char) (i + 'A'), i);
         }
         return alphabet;
     }
@@ -27,19 +27,26 @@ public class Task1 {
         String newString = "";
         for (int i = 0; i < string.length(); i++) {
             Character symbol = string.charAt(i);
-            if (symbol <= 90 && symbol >= 65) {
+            int lastSymbolOfFirstPartOfAlphabet = 12;
+            int firstSymbolOfSecondPartOfAlphabet = 13;
+            if (symbol <= 'Z' && symbol >= 'A') {
                 Integer positionOfSymbol = alphabetUpCase.get(symbol);
-                if (positionOfSymbol <= 12) {
-                    newString += (char) (((12 - positionOfSymbol) + 13) + 65);
+                if (positionOfSymbol <= lastSymbolOfFirstPartOfAlphabet) {
+                    newString +=
+                        (char) (((lastSymbolOfFirstPartOfAlphabet - positionOfSymbol)
+                            + firstSymbolOfSecondPartOfAlphabet) + 'A');
                 } else {
-                    newString += (char) ((12 - (positionOfSymbol - 13)) + 65);
+                    newString += (char) ((lastSymbolOfFirstPartOfAlphabet
+                        - (positionOfSymbol - firstSymbolOfSecondPartOfAlphabet)) + 'A');
                 }
-            } else if (symbol <= 122 && symbol >= 97) {
+            } else if (symbol <= 'z' && symbol >= 'a') {
                 Integer positionOfSymbol = alphabetLowCase.get(symbol);
-                if (positionOfSymbol <= 12) {
-                    newString += (char) (((12 - positionOfSymbol) + 13) + 97);
+                if (positionOfSymbol <= lastSymbolOfFirstPartOfAlphabet) {
+                    newString += (char) (((lastSymbolOfFirstPartOfAlphabet
+                        - positionOfSymbol) + firstSymbolOfSecondPartOfAlphabet) + 'a');
                 } else {
-                    newString += (char) ((12 - (positionOfSymbol - 13)) + 97);
+                    newString += (char) ((lastSymbolOfFirstPartOfAlphabet
+                        - (positionOfSymbol - firstSymbolOfSecondPartOfAlphabet)) + 'a');
                 }
             } else {
                 newString += symbol;

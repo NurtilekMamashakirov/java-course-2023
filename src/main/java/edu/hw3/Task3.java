@@ -7,8 +7,7 @@ public class Task3<T extends Object> {
 
     public HashMap<T, Integer> freqDict(List<T> listOfWords) {
         HashMap<T, Integer> freqDictionary = new HashMap<>();
-        for (T word:
-             listOfWords) {
+        for (T word: listOfWords) {
             if (freqDictionary.containsKey(word)) {
                 freqDictionary.put(word, freqDictionary.get(word) + 1);
             } else {

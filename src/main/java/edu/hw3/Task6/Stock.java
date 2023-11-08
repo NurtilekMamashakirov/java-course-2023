@@ -24,12 +24,18 @@ public class Stock {
     }
 
     @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Stock stock = (Stock) o;
 
-        if (company != null ? !company.equals(stock.company) : stock.company != null) return false;
+        if (company != null ? !company.equals(stock.company) : stock.company != null) {
+            return false;
+        }
         return value != null ? value.equals(stock.value) : stock.value == null;
     }
 
@@ -41,9 +47,9 @@ public class Stock {
     }
 
     @Override public String toString() {
-        return "Stock{" +
-            "company='" + company + '\'' +
-            ", value=" + value +
-            '}';
+        return "Stock{"
+            + "company='" + company + '\''
+            + ", value=" + value
+            + '}';
     }
 }
