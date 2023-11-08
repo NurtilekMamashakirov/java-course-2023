@@ -9,15 +9,17 @@ public class Task1 {
 
     private HashMap<Character, Integer> getAlphabetLowCase() {
         HashMap<Character, Integer> alphabet = new HashMap<>();
-        for (int i = 0; i < 26; i++) {
+        int lengthOfAlphabet = 26;
+        for (int i = 0; i < lengthOfAlphabet; i++) {
             alphabet.put((char) (i + 'a'), i);
         }
         return alphabet;
     }
 
     private HashMap<Character, Integer> getAlphabetUpCase() {
+        int lengthOfAlphabet = 26;
         HashMap<Character, Integer> alphabet = new HashMap<>();
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < lengthOfAlphabet; i++) {
             alphabet.put((char) (i + 'A'), i);
         }
         return alphabet;
@@ -25,10 +27,10 @@ public class Task1 {
 
     public String atbash(String string) {
         String newString = "";
+        int lastSymbolOfFirstPartOfAlphabet = 12;
+        int firstSymbolOfSecondPartOfAlphabet = 13;
         for (int i = 0; i < string.length(); i++) {
             Character symbol = string.charAt(i);
-            int lastSymbolOfFirstPartOfAlphabet = 12;
-            int firstSymbolOfSecondPartOfAlphabet = 13;
             if (symbol <= 'Z' && symbol >= 'A') {
                 Integer positionOfSymbol = alphabetUpCase.get(symbol);
                 if (positionOfSymbol <= lastSymbolOfFirstPartOfAlphabet) {
