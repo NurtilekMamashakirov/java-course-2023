@@ -7,21 +7,21 @@ public class Task3 {
     }
 
     public static boolean isNestable(int[] a1, int[] a2) {
-        int minA1 = 100000000;
-        int maxA1 = -100000000;
-        int minA2 = 1000000000;
-        int maxA2 = -1000000000;
-        for (int i = 0; i < a1.length; i++) {
-            minA1 = (minA1 > a1[i]) ? a1[i] : minA1;
-            maxA1 = (maxA1 < a1[i]) ? a1[i] : maxA1;
+        final int BIG_NUMBER = 1000000000;
+        final int SMALL_NUMBER = -1000000000;
+
+        int minA1 = BIG_NUMBER;
+        int maxA1 = SMALL_NUMBER;
+        int minA2 = BIG_NUMBER;
+        int maxA2 = SMALL_NUMBER;
+        for (int k : a1) {
+            minA1 = Math.min(minA1, k);
+            maxA1 = Math.max(maxA1, k);
         }
-        for (int i = 0; i < a2.length; i++) {
-            minA2 = (minA2 > a2[i]) ? a2[i] : minA2;
-            maxA2 = (maxA2 < a2[i]) ? a2[i] : maxA2;
+        for (int j : a2) {
+            minA2 = Math.min(minA2, j);
+            maxA2 = Math.max(maxA2, j);
         }
-        if (minA1 > minA2 && maxA1 < maxA2)
-            return true;
-        else
-            return false;
+        return minA1 > minA2 && maxA1 < maxA2;
     }
 }

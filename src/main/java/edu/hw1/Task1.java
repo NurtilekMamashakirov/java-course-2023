@@ -9,9 +9,11 @@ public class Task1 {
     public static int minutesToSeconds(String minutesAndSeconds) {
         int minutes = Integer.parseInt(minutesAndSeconds.split(":")[0]);
         int seconds = Integer.parseInt(minutesAndSeconds.split(":")[1]);
-        if (seconds >= 60)
+        final int SECONDS_IN_MINUTE = 60;
+        if (seconds >= SECONDS_IN_MINUTE) {
             return -1;
-        int result = 60 * minutes + seconds;
+        }
+        int result = SECONDS_IN_MINUTE * minutes + seconds;
         return result;
     }
 }

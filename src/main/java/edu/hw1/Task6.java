@@ -33,9 +33,12 @@ public class Task6 {
 
         int ans = number2 - number1;
 
-        if (ans == 6174)
+        final int RIGHT_ANSWER = 6174;
+
+        if (ans == RIGHT_ANSWER) {
             return count;
-        else
+        } else {
             return countK(ans, count + 1);
+        }
     }
 }
