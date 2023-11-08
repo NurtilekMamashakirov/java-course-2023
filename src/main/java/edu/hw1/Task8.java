@@ -9,8 +9,8 @@ public class Task8 {
                 if (field[i][j] == 1) {
                     if (!(checkLeft1Up2(i, j, field) && checkLeft2Up1(i, j, field)
                         && checkLeft1Down2(i, j, field) && checkLeft2Down1(i, j, field) && checkRight1Up2(i, j, field)
-                        && checkRight1Down2(i, j, field) && checkRight2Down1(i, j, field) &&
-                        checkRight2Up1(i, j, field))) {
+                        && checkRight1Down2(i, j, field) && checkRight2Down1(i, j, field)
+                        && checkRight2Up1(i, j, field))) {
                         flag = false;
                     }
                 }
