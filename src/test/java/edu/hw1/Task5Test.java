@@ -21,6 +21,7 @@ class Task5Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void isPalindromeDescendant(Integer example, Boolean expected) {
-        assertThat(Task5.isPalindromeDescendant(example)).isEqualTo(expected);
+        Task5 task = new Task5();
+        assertThat(task.isPalindromeDescendant(example)).isEqualTo(expected);
     }
 }

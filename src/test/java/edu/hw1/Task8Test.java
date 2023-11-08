@@ -54,6 +54,7 @@ class Task8Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void knightBoardCapture(int[][] example, Boolean expected) {
-        assertThat(Task8.knightBoardCapture(example)).isEqualTo(expected);
+        Task8 task = new Task8();
+        assertThat(task.knightBoardCapture(example)).isEqualTo(expected);
     }
 }

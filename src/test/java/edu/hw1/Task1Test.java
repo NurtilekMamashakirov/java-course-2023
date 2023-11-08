@@ -17,6 +17,7 @@ class Task1Test {
     @ParameterizedTest
     @MethodSource("timeAndExpected")
     void minutesToSeconds(String time, Integer expected) {
-        assertThat(Task1.minutesToSeconds(time)).isEqualTo(expected);
+        Task1 task1 = new Task1();
+        assertThat(task1.minutesToSeconds(time)).isEqualTo(expected);
     }
 }

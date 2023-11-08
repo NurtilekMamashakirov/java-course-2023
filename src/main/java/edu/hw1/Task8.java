@@ -2,11 +2,7 @@ package edu.hw1;
 
 public class Task8 {
 
-    private Task8() {
-
-    }
-
-    public static boolean knightBoardCapture(int[][] field) {
+    public boolean knightBoardCapture(int[][] field) {
         boolean flag = true;
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {

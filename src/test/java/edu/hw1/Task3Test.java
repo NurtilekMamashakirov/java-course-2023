@@ -20,6 +20,7 @@ class Task3Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void arrayInArray(int[] firstArray, int[] secondArray, boolean expected) {
-        assertThat(Task3.isNestable(firstArray, secondArray)).isEqualTo(expected);
+        Task3 task = new Task3();
+        assertThat(task.isNestable(firstArray, secondArray)).isEqualTo(expected);
     }
 }

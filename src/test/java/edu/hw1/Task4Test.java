@@ -19,6 +19,7 @@ class Task4Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void fixStrings(String example, String expected) {
-        assertThat(Task4.fixStrings(example)).isEqualTo(expected);
+        Task4 task = new Task4();
+        assertThat(task.fixStrings(example)).isEqualTo(expected);
     }
 }

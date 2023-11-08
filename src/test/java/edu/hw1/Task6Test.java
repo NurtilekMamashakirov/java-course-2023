@@ -19,6 +19,7 @@ class Task6Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void countK(Integer example, Integer expected) {
-        assertThat(Task6.countK(example,1)).isEqualTo(expected);
+        Task6 task = new Task6();
+        assertThat(task.countK(example,1)).isEqualTo(expected);
     }
 }

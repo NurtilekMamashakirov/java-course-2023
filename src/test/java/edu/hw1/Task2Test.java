@@ -18,6 +18,7 @@ class Task2Test {
     @ParameterizedTest
     @MethodSource("numAndExpected")
     void countNumbers(Integer num, Integer expected) {
-        assertThat(Task2.countDigits(num)).isEqualTo(expected);
+        Task2 task = new Task2();
+        assertThat(task.countDigits(num)).isEqualTo(expected);
     }
 }

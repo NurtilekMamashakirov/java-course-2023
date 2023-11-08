@@ -12,7 +12,8 @@ class Task7Test {
 
     @Test
     void rotateRight() {
-        assertThat(Task7.rotateRight(8, 1)).isEqualTo(4);
+        Task7 task = new Task7();
+        assertThat(task.rotateRight(8, 1)).isEqualTo(4);
     }
 
     static Arguments[] exampleAndExpected() {
@@ -25,6 +26,7 @@ class Task7Test {
     @ParameterizedTest
     @MethodSource("exampleAndExpected")
     void rotateLeft(Integer num, Integer shift, Integer expected) {
-        assertThat(Task7.rotateLeft(num, shift)).isEqualTo(expected);
+        Task7 task = new Task7();
+        assertThat(task.rotateLeft(num, shift)).isEqualTo(expected);
     }
 }

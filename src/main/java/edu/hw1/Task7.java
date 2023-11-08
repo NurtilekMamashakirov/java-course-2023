@@ -2,11 +2,7 @@ package edu.hw1;
 
 public class Task7 {
 
-    private Task7() {
-
-    }
-
-    public static int rotateRight(int n, int shift) {
+    public int rotateRight(int n, int shift) {
         String binary = Integer.toBinaryString(n);
         int[] binary2 = new int[binary.length()];
         for (int i = 0; i < binary.length(); i++) {
@@ -21,7 +17,7 @@ public class Task7 {
         return ans;
     }
 
-    public static int rotateLeft(int n, int shift) {
+    public int rotateLeft(int n, int shift) {
         final int CONST = 100000;
         String binary = Integer.toBinaryString(n);
         int[] binary2 = new int[binary.length()];

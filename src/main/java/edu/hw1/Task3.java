@@ -2,11 +2,7 @@ package edu.hw1;
 
 public class Task3 {
 
-    private Task3() {
-
-    }
-
-    public static boolean isNestable(int[] a1, int[] a2) {
+    public boolean isNestable(int[] a1, int[] a2) {
         final int BIG_NUMBER = 1000000000;
         final int SMALL_NUMBER = -1000000000;
 

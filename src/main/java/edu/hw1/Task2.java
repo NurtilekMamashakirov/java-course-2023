@@ -2,11 +2,7 @@ package edu.hw1;
 
 public class Task2 {
 
-    private Task2() {
-
-    }
-
-    public static int countDigits(int number) {
+    public int countDigits(int number) {
         int count = 1;
         final int NUMBER_TEN = 10;
         int numberToCount = number;
