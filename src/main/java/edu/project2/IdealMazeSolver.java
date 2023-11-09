@@ -17,11 +17,6 @@ public class IdealMazeSolver implements Solver {
         Queue<Cell> cellQueue = new ArrayDeque<>();
         cellQueue.offer(mazeField.get(start.row()).get(start.col()));
         boolean[][] checkForIn = new boolean[height][width];
-        for (int i = 0; i < mazeField.size(); i++) {
-            for (int j = 0; j < mazeField.get(i).size(); j++) {
-                checkForIn[i][j] = false;
-            }
-        }
         checkForIn[start.row()][start.col()] = true;
         while (cellQueue.size() > 0) {
             Cell actualCell = cellQueue.poll();
