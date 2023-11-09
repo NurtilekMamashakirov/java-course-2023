@@ -29,8 +29,8 @@ public class IdealMazeSolver implements Solver {
             Cell downCell;
             Cell leftCell;
             Cell upCell;
-            if (!actualCell.getRightEdge() && actualCell.getCol() != width - 1 &&
-                !checkForIn[actualCell.getRow()][actualCell.getCol() + 1]) {
+            if (!actualCell.getRightEdge() && actualCell.getCol() != width - 1
+                && !checkForIn[actualCell.getRow()][actualCell.getCol() + 1]) {
                 rightCell = mazeField.get(actualCell.getRow()).get(actualCell.getCol() + 1);
                 rightCell.setParentCell(actualCell);
                 cellQueue.offer(rightCell);
@@ -39,8 +39,8 @@ public class IdealMazeSolver implements Solver {
                 stringMazeField.set(rightCell.getCol(), rightCell);
                 mazeField.set(rightCell.getRow(), stringMazeField);
             }
-            if (!actualCell.getDownEdge() && actualCell.getRow() != height - 1 &&
-                !checkForIn[actualCell.getRow() + 1][actualCell.getCol()]) {
+            if (!actualCell.getDownEdge() && actualCell.getRow() != height - 1
+                && !checkForIn[actualCell.getRow() + 1][actualCell.getCol()]) {
                 downCell = mazeField.get(actualCell.getRow() + 1).get(actualCell.getCol());
                 downCell.setParentCell(actualCell);
                 cellQueue.offer(downCell);
@@ -49,9 +49,9 @@ public class IdealMazeSolver implements Solver {
                 stringMazeField.set(downCell.getCol(), downCell);
                 mazeField.set(downCell.getRow(), stringMazeField);
             }
-            if (actualCell.getCol() != 0 &&
-                !mazeField.get(actualCell.getRow()).get(actualCell.getCol() - 1).getRightEdge() &&
-                !checkForIn[actualCell.getRow()][actualCell.getCol() - 1]) {
+            if (actualCell.getCol() != 0
+                && !mazeField.get(actualCell.getRow()).get(actualCell.getCol() - 1).getRightEdge()
+                && !checkForIn[actualCell.getRow()][actualCell.getCol() - 1]) {
                 leftCell = mazeField.get(actualCell.getRow()).get(actualCell.getCol() - 1);
                 leftCell.setParentCell(actualCell);
                 cellQueue.offer(leftCell);
@@ -60,9 +60,9 @@ public class IdealMazeSolver implements Solver {
                 stringMazeField.set(leftCell.getCol(), leftCell);
                 mazeField.set(leftCell.getRow(), stringMazeField);
             }
-            if (actualCell.getRow() != 0 &&
-                !mazeField.get(actualCell.getRow() - 1).get(actualCell.getCol()).getDownEdge() &&
-                !checkForIn[actualCell.getRow() - 1][actualCell.getCol()]) {
+            if (actualCell.getRow() != 0
+                && !mazeField.get(actualCell.getRow() - 1).get(actualCell.getCol()).getDownEdge()
+                && !checkForIn[actualCell.getRow() - 1][actualCell.getCol()]) {
                 upCell = mazeField.get(actualCell.getRow() - 1).get(actualCell.getCol());
                 upCell.setParentCell(actualCell);
                 cellQueue.offer(upCell);
@@ -72,6 +72,7 @@ public class IdealMazeSolver implements Solver {
                 mazeField.set(upCell.getRow(), stringMazeField);
             }
         }
+
         Cell actualCell = mazeField.get(end.row()).get(end.col());
 
         while (!actualCell.equals(mazeField.get(start.row()).get(start.col()))) {

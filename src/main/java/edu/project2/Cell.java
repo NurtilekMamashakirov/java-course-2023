@@ -1,9 +1,5 @@
 package edu.project2;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class Cell {
     private final int row;
     private final int col;
@@ -49,12 +45,18 @@ public class Cell {
     }
 
     @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Cell cell = (Cell) o;
 
-        if (row != cell.row) return false;
+        if (row != cell.row) {
+            return false;
+        }
         return col == cell.col;
     }
 

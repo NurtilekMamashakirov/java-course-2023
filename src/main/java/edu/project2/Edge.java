@@ -9,8 +9,9 @@ public class Edge {
     private Integer id;
 
     public Edge() {
+        final int numberForRandom = 1000;
         final Random random = new Random();
-        id = random.nextInt(1000);
+        id = random.nextInt(numberForRandom);
     }
 
     public Integer getId() {
@@ -34,12 +35,18 @@ public class Edge {
     }
 
     @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Edge edge = (Edge) o;
 
-        if (cell1 != null ? !cell1.equals(edge.cell1) : edge.cell1 != null) return false;
+        if (cell1 != null ? !cell1.equals(edge.cell1) : edge.cell1 != null) {
+            return false;
+        }
         return cell2 != null ? cell2.equals(edge.cell2) : edge.cell2 == null;
     }
 
