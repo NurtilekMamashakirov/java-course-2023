@@ -2,10 +2,10 @@ package edu.project2;
 
 import edu.project2.JPanel.JPanelForRenderMaze;
 import edu.project2.JPanel.JPanelForRenderMazeAndSolve;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import java.util.List;
 
 public class MazeRenderer implements Renderer {
 

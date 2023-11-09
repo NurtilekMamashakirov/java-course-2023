@@ -1,9 +1,9 @@
 package edu.project2.JPanel;
 
 import edu.project2.Cell;
-import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.List;
+import javax.swing.JPanel;
 
 public class JPanelForRenderMaze extends JPanel {
 

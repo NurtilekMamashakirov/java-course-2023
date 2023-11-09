@@ -2,9 +2,9 @@ package edu.project2.JPanel;
 
 import edu.project2.Cell;
 import edu.project2.Coordinate;
-import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.List;
+import javax.swing.JPanel;
 
 public class JPanelForRenderMazeAndSolve extends JPanel {
 
