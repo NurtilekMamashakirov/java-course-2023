@@ -1,13 +1,13 @@
 package edu.project2;
 
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.List;
 import java.util.Scanner;
 
 public class Launcher {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
     private Launcher() {
     }
