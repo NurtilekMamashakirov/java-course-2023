@@ -1,6 +1,7 @@
 package edu.hw2.Task3;
 
 import edu.hw2.Task3.ConnectionManagers.ConnectionManager;
+import edu.hw2.Task3.Connections.Connection;
 import edu.hw2.Task3.Exceptions.ConnectionException;
 
 public final class PopularCommandExecutor {
@@ -20,8 +21,8 @@ public final class PopularCommandExecutor {
     void tryExecute(String command) throws Exception {
         Integer checkForSuccessConnect = 0;
         for (int i = 0; i < maxAttempts; i++) {
-            try {
-                manager.getConnection().execute(command);
+            try (Connection connection = manager.getConnection()){
+                connection.execute(command);
             } catch (ConnectionException e) {
                 checkForSuccessConnect++;
                 if (checkForSuccessConnect == maxAttempts) {
@@ -29,7 +30,10 @@ public final class PopularCommandExecutor {
                 }
             }
         }
-        manager.getConnection().close();
+    }
+
+    public ConnectionManager getConnectionManager() {
+        return manager;
     }
 
 }
