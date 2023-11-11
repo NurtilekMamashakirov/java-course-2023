@@ -48,11 +48,11 @@ public class TasksTest {
     //task3
     @Test
     void typesCountTest() {
-        Map<Animal.Type, Integer> expectedMap = new HashMap<>();
-        expectedMap.put(Animal.Type.DOG, 1);
-        expectedMap.put(Animal.Type.CAT, 1);
-        expectedMap.put(Animal.Type.BIRD, 1);
-        expectedMap.put(Animal.Type.FISH, 1);
+        Map<Animal.Type, Long> expectedMap = new HashMap<>();
+        expectedMap.put(Animal.Type.DOG, 1L);
+        expectedMap.put(Animal.Type.CAT, 1L);
+        expectedMap.put(Animal.Type.BIRD, 1L);
+        expectedMap.put(Animal.Type.FISH, 1L);
         assertThat(tasks.countTypes(animals)).isEqualTo(expectedMap);
     }
 
@@ -210,7 +210,6 @@ public class TasksTest {
             true
         ));
 
-
     }
 
     //task19
@@ -218,7 +217,8 @@ public class TasksTest {
     void findErrorsTest() {
         animals.add(new Animal("3429fu f3f4", Animal.Type.FISH, Animal.Sex.F, 30, 90, 432, true));
         Map<String, ValidationError> errors = tasks.findErrors(animals);
-        assertThat(errors.get("Vasyaa").getWeightError().getMessage()).isEqualTo("This type of animal can't have weight 364!");
+        assertThat(errors.get("Vasyaa").getWeightError().getMessage()).isEqualTo(
+            "This type of animal can't have weight 364!");
         assertThat(errors.get("3429fu f3f4").getNameError().getMessage()).isEqualTo("Used illegal symbols!");
     }
 
@@ -227,8 +227,10 @@ public class TasksTest {
     void findErrorsWithMessageTest() {
         Map<String, String> errors = tasks.findErrorsWithMessage(animals);
         System.out.println(errors);
-        assertThat(errors.get("Liza")).isEqualTo("No name error. No age error. This type of animal can't have height 90! This type of animal can't have weight 432!");
-        assertThat(errors.get("Vasyaa")).isEqualTo("No name error. No age error. No height error. This type of animal can't have weight 364!");
+        assertThat(errors.get("Liza")).isEqualTo(
+            "No name error. No age error. This type of animal can't have height 90! This type of animal can't have weight 432!");
+        assertThat(errors.get("Vasyaa")).isEqualTo(
+            "No name error. No age error. No height error. This type of animal can't have weight 364!");
     }
 
 }

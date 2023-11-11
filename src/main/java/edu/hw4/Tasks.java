@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Tasks {
 
@@ -23,15 +27,11 @@ public class Tasks {
     }
 
     //task3
-    public Map<Animal.Type, Integer> countTypes(List<Animal> animalList) {
-        Map<Animal.Type, Integer> types = new HashMap<>();
-        animalList.stream().forEach(animal -> {
-            if (types.containsKey(animal.type())) {
-                types.put(animal.type(), types.get(animal.type()) + 1);
-            } else {
-                types.put(animal.type(), 1);
-            }
-        });
+    public Map<Animal.Type, Long> countTypes(List<Animal> animalList) {
+        Map<Animal.Type, Long> types =
+            animalList
+                .stream()
+                .collect(Collectors.groupingBy(Animal::type, Collectors.counting()));
         return types;
     }
 
@@ -47,28 +47,17 @@ public class Tasks {
 
     //task5
     public Animal.Sex maleOrFemale(List<Animal> animalList) {
-        Map<Animal.Sex, Integer> sexesCount = new HashMap<>();
-        sexesCount.put(Animal.Sex.M, 0);
-        sexesCount.put(Animal.Sex.F, 0);
-        animalList.stream().forEach(animal ->
-            sexesCount.put(animal.sex(), sexesCount.get(animal.sex()) + 1)
-        );
+        Map<Animal.Sex, Long> sexesCount =
+            animalList.stream().collect(Collectors.groupingBy(Animal::sex, Collectors.counting()));
         return sexesCount.get(Animal.Sex.M) >= sexesCount.get(Animal.Sex.F) ? Animal.Sex.M : Animal.Sex.F;
     }
 
     //task6
     public Map<Animal.Type, Animal> heaviestAnimalOfTypes(List<Animal> animalList) {
-        Map<Animal.Type, Animal> heaviestAnimals = new HashMap<>();
-        animalList.stream().forEach(animal -> {
-            if (heaviestAnimals.containsKey(animal.type())) {
-                if (heaviestAnimals.get(animal.type()).weight() < animal.weight()) {
-                    heaviestAnimals.put(animal.type(), animal);
-                }
-            } else {
-                heaviestAnimals.put(animal.type(), animal);
-            }
-        });
-        return heaviestAnimals;
+        return animalList.stream()
+            .collect(Collectors.toMap(Animal::type, Function.identity(),
+                BinaryOperator.maxBy(Comparator.comparing(Animal::weight))
+            ));
     }
 
     //task7
@@ -84,43 +73,12 @@ public class Tasks {
 
     //task9
     public Integer countPaws(List<Animal> animalList) {
-        AtomicReference<Integer> countPaws = new AtomicReference<>(0);
-
-        final int DOG_AND_CAT_PAWS = 4;
-        final int BIRD_PAWS = 2;
-        final int SPIDER_PAWS = 8;
-
-        animalList.stream().forEach(animal -> {
-            if (animal.type().equals(Animal.Type.DOG) || animal.type().equals(Animal.Type.CAT)) {
-                countPaws.getAndSet(countPaws.get() + DOG_AND_CAT_PAWS);
-            } else if (animal.type().equals(Animal.Type.BIRD)) {
-                countPaws.getAndSet(countPaws.get() + BIRD_PAWS);
-            } else if (animal.type().equals(Animal.Type.SPIDER)) {
-                countPaws.getAndSet(countPaws.get() + SPIDER_PAWS);
-            }
-        });
-        return countPaws.get();
+        return animalList.stream().mapToInt(Animal::paws).sum();
     }
 
     //task10
     public List<Animal> animalsWithAgeNotEqualsPaws(List<Animal> animalList) {
-
-        final int DOG_AND_CAT_PAWS = 4;
-        final int BIRD_PAWS = 2;
-        final int SPIDER_PAWS = 8;
-        final int FISH_PAWS = 0;
-
-        List<Animal> animals = animalList.stream().filter(animal -> {
-            if (animal.type().equals(Animal.Type.DOG) || animal.type().equals(Animal.Type.CAT)) {
-                return animal.age() != DOG_AND_CAT_PAWS;
-            } else if (animal.type().equals(Animal.Type.BIRD)) {
-                return animal.age() != BIRD_PAWS;
-            } else if (animal.type().equals(Animal.Type.SPIDER)) {
-                return animal.age() != SPIDER_PAWS;
-            } else {
-                return animal.age() != FISH_PAWS;
-            }
-        }).toList();
+        List<Animal> animals = animalList.stream().filter(animal -> animal.age() != animal.paws()).toList();
         return animals;
     }
 
@@ -148,16 +106,8 @@ public class Tasks {
 
     //taks15
     public Map<Animal.Type, Integer> summarizeWeightWithCondition(List<Animal> animalList, Integer k, Integer i) {
-        Map<Animal.Type, Integer> sumWeight = new HashMap<>();
-        animalList.stream().filter(animal -> animal.age() >= k && animal.age() <= i).toList()
-            .forEach(animal -> {
-                if (sumWeight.containsKey(animal.type())) {
-                    sumWeight.put(animal.type(), sumWeight.get(animal.type()) + animal.weight());
-                } else {
-                    sumWeight.put(animal.type(), animal.weight());
-                }
-            });
-        return sumWeight;
+        return animalList.stream().filter(animal -> animal.age() >= k && animal.age() <= i)
+            .collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(Animal::weight)));
     }
 
     //task16
@@ -168,28 +118,22 @@ public class Tasks {
 
     //task17
     public Boolean spiderBitesMoreThanDog(List<Animal> animalList) {
-        Map<Animal.Type, Integer[]> countBite = new HashMap<>();
-        countBite.put(Animal.Type.DOG, new Integer[] {0, 0});
-        countBite.put(Animal.Type.SPIDER, new Integer[] {0, 0});
-        animalList.stream().forEach(a -> {
-            if (a.type().equals(Animal.Type.DOG) || a.type().equals(Animal.Type.SPIDER)) {
-                Integer[] count = countBite.get(a.type());
-                count[0]++;
-                if (a.bites()) {
-                    count[1]++;
-                }
-                countBite.put(a.type(), count);
-            }
-        });
-        if (countBite.get(Animal.Type.SPIDER)[0] != 0 && countBite.get(Animal.Type.DOG)[0] != 0) {
-            Double spiderStat = Double.valueOf(countBite.get(Animal.Type.SPIDER)[1])
-                / Double.valueOf(countBite.get(Animal.Type.SPIDER)[0]);
-            Double dogStat = Double.valueOf(countBite.get(Animal.Type.DOG)[1])
-                / Double.valueOf(countBite.get(Animal.Type.DOG)[0]);
-            return spiderStat > dogStat;
-        } else {
+        long spiderQuantity = animalList.stream()
+            .filter(a -> a.type().equals(Animal.Type.SPIDER))
+            .count();
+        long spiderBiteQuantity = animalList.stream()
+            .filter(a -> a.type().equals(Animal.Type.SPIDER) && a.bites())
+            .count();
+        long dogQuantity = animalList.stream()
+            .filter(a -> a.type().equals(Animal.Type.DOG))
+            .count();
+        long dogBiteQuantity = animalList.stream()
+            .filter(a -> a.type().equals(Animal.Type.DOG) && a.bites())
+            .count();
+        if (spiderQuantity == 0 || dogQuantity == 0) {
             return false;
         }
+        return spiderBiteQuantity / spiderQuantity > dogBiteQuantity / dogQuantity;
     }
 
     //task18
@@ -200,27 +144,29 @@ public class Tasks {
 
     //task19
     Map<String, ValidationError> findErrors(List<Animal> animalList) {
-        Map<String, ValidationError> errorsOfAnimals = new HashMap<>();
-        animalList.stream().forEach(a -> {
-            ValidationError validationError = new ValidationError();
-            validationError.checkAllErrors(a);
-            errorsOfAnimals.put(a.name(), validationError);
-        });
+        Map<String, ValidationError> errorsOfAnimals =
+            animalList.stream()
+                .collect(Collectors.toMap(Animal::name, a -> {
+                    ValidationError validationError = new ValidationError();
+                    validationError.checkAllErrors(a);
+                    return validationError;
+                }));
         return errorsOfAnimals;
     }
 
     //task20
     Map<String, String> findErrorsWithMessage(List<Animal> animalList) {
-        Map<String, String> errorsOfAnimals = new HashMap<>();
-        animalList.stream().forEach(a -> {
-            ValidationError validationError = new ValidationError();
-            validationError.checkAllErrors(a);
-            String message = validationError.getNameError().getMessage() + " "
-                + validationError.getAgeError().getMessage() + " "
-                + validationError.getHeightError().getMessage() + " "
-                + validationError.getWeightError().getMessage();
-            errorsOfAnimals.put(a.name(), message);
-        });
+        Map<String, String> errorsOfAnimals =
+            animalList.stream()
+                .collect(Collectors.toMap(Animal::name, a -> {
+                    ValidationError validationError = new ValidationError();
+                    validationError.checkAllErrors(a);
+                    String message = validationError.getNameError().getMessage() + " "
+                        + validationError.getAgeError().getMessage() + " "
+                        + validationError.getHeightError().getMessage() + " "
+                        + validationError.getWeightError().getMessage();
+                    return message;
+                }));
         return errorsOfAnimals;
     }
 }
