@@ -21,7 +21,7 @@ public final class PopularCommandExecutor {
     void tryExecute(String command) throws Exception {
         Integer checkForSuccessConnect = 0;
         for (int i = 0; i < maxAttempts; i++) {
-            try (Connection connection = manager.getConnection()){
+            try (Connection connection = manager.getConnection()) {
                 connection.execute(command);
             } catch (ConnectionException e) {
                 checkForSuccessConnect++;
