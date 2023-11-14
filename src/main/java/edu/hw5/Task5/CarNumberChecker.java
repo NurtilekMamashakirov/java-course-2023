@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 public class CarNumberChecker {
 
+    private CarNumberChecker() {}
+
     private final static Pattern PATTERN =
         Pattern.compile("^([АВЕКМНОРСТУХ])[0-9]{3}([АВЕКМНОРСТУХ]){2}[0-9]{2,3}$");
 

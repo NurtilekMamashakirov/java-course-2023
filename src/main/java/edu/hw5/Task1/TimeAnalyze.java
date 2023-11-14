@@ -8,12 +8,14 @@ import java.util.regex.Pattern;
 
 public class TimeAnalyze {
 
+    private TimeAnalyze() {}
+
     private final static SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
     private final static Pattern PATTERN =
         Pattern.compile("^(\\d{4}-\\d{2}-\\d{2}, \\d{2}:\\d{2}) - (\\d{4}-\\d{2}-\\d{2}, \\d{2}:\\d{2})$");
     private final static String WRONG_DATE_MESSAGE = "Wrong date format: ";
 
-    private long minusDates(Date startDate, Date endDate) {
+    private static long minusDates(Date startDate, Date endDate) {
         final long MILLISECONDS_IN_MINUTE = 60000;
 
         long date1Milliseconds = startDate.getTime();
@@ -25,7 +27,7 @@ public class TimeAnalyze {
         return Math.abs(date2Minutes - date1Minutes);
     }
 
-    public String analyzeTime(String... startsAndEnds) {
+    public static String analyzeTime(String... startsAndEnds) {
         long averageTime = 0;
         for (String startAndEnd : startsAndEnds) {
             Matcher matcher = PATTERN.matcher(startAndEnd);
@@ -47,7 +49,7 @@ public class TimeAnalyze {
         return minutesToString(averageTime);
     }
 
-    private String minutesToString(long minutes) {
+    private static String minutesToString(long minutes) {
         final long MINUTES_IN_HOUR = 60;
         String minutesToString = String.valueOf(minutes % MINUTES_IN_HOUR);
         String hoursToString = String.valueOf((minutes - (minutes % MINUTES_IN_HOUR)) / MINUTES_IN_HOUR);

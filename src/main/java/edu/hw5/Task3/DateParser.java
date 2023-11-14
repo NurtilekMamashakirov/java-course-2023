@@ -9,8 +9,12 @@ import java.util.regex.Pattern;
 
 public class DateParser {
 
+    private DateParser() {
+    }
+
     private final static Pattern PATTERN = Pattern.compile("^(\\d+) days? ago$");
 
+    @SuppressWarnings("checkstyle:ReturnCount")
     public static Optional<LocalDate> parseDate(String string) {
         try {
             LocalDate date = LocalDate.parse(string);
@@ -27,26 +31,26 @@ public class DateParser {
         }
 
         try {
-            string = string.equalsIgnoreCase("tomorrow") ? "1" : string;
-            LocalDate date = LocalDate.now().plusDays(Long.parseLong(string));
+            String formattedString = string.equalsIgnoreCase("tomorrow") ? "1" : string;
+            LocalDate date = LocalDate.now().plusDays(Long.parseLong(formattedString));
             return Optional.of(date);
         } catch (NumberFormatException | DateTimeParseException e) {
             // Date string does not match "X day(s) ago" format or cannot be parsed as number
         }
 
         try {
-            string = string.equalsIgnoreCase("yesterday") ? "1" : string;
-            LocalDate date = LocalDate.now().minusDays(Long.parseLong(string));
+            String formattedString = string.equalsIgnoreCase("yesterday") ? "1" : string;
+            LocalDate date = LocalDate.now().minusDays(Long.parseLong(formattedString));
             return Optional.of(date);
         } catch (NumberFormatException | DateTimeParseException e) {
             // Date string does not match "X day(s) ago" format or cannot be parsed as number
         }
 
         try {
-            string = string.equalsIgnoreCase("today") ? "1" : string;
+            String formattedString = string.equalsIgnoreCase("today") ? "1" : string;
             LocalDate date = LocalDate.now()
-                .plusDays(Long.parseLong(string))
-                .minusDays(Long.parseLong(string));
+                .plusDays(Long.parseLong(formattedString))
+                .minusDays(Long.parseLong(formattedString));
             return Optional.of(date);
         } catch (NumberFormatException | DateTimeParseException e) {
             // Date string does not match "X day(s) ago" format or cannot be parsed as number

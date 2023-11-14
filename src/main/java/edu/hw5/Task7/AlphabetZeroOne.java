@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AlphabetZeroOne {
+
+    private AlphabetZeroOne() {}
+
     private final static Pattern PATTERN_ONE = Pattern.compile("^[01]{2}0[01]+$");
     private final static Pattern PATTERN_TWO = Pattern.compile("^(.).*\\1$");
     private final static Pattern PATTERN_THREE = Pattern.compile("^[01]{1,3}$");

@@ -8,12 +8,16 @@ import java.util.List;
 
 public class FridayOnThirteen {
 
+    private FridayOnThirteen() {}
+
     private final static int THIRTEENTH = 13;
+    private final static int FIRST_MONTH = 1;
+    private final static int LAST_MONTH = 12;
 
     public static List<LocalDate> findFridayThe13ths(int year) {
         List<LocalDate> fridayThe13ths = new ArrayList<>();
-        LocalDate date = LocalDate.of(year, 1, 13);
-        for (int month = 1; month <= 12; month++) {
+        LocalDate date = LocalDate.of(year, FIRST_MONTH, THIRTEENTH);
+        for (int month = FIRST_MONTH; month <= LAST_MONTH; month++) {
             if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
                 fridayThe13ths.add(date);
             }

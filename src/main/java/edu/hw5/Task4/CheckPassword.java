@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class CheckPassword {
 
+    private CheckPassword() {
+
+    }
+
     private final static Pattern PATTERN = Pattern.compile(".*[~!@#$%^&*|].*");
 
     public static boolean checkForSymbols(String password) {
