@@ -1,5 +1,7 @@
 package edu.hw5.Task1;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +12,7 @@ public class TimeAnalyze {
 
     private TimeAnalyze() {}
 
+    private final static Logger LOGGER = LogManager.getLogger();
     private final static SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
     private final static Pattern PATTERN =
         Pattern.compile("^(\\d{4}-\\d{2}-\\d{2}, \\d{2}:\\d{2}) - (\\d{4}-\\d{2}-\\d{2}, \\d{2}:\\d{2})$");
@@ -42,7 +45,7 @@ public class TimeAnalyze {
                 Date endDate = FORMATTER.parse(end);
                 averageTime += minusDates(startDate, endDate);
             } catch (ParseException e) {
-                e.printStackTrace();
+                LOGGER.info(e);
             }
         }
         averageTime = averageTime / startsAndEnds.length;
