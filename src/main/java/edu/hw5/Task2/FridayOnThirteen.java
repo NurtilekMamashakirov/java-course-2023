@@ -8,6 +8,8 @@ import java.util.List;
 
 public class FridayOnThirteen {
 
+    private final static int THIRTEENTH = 13;
+
     public static List<LocalDate> findFridayThe13ths(int year) {
         List<LocalDate> fridayThe13ths = new ArrayList<>();
         LocalDate date = LocalDate.of(year, 1, 13);
@@ -23,7 +25,7 @@ public class FridayOnThirteen {
     public static LocalDate findNextFridayThe13th() {
         LocalDate date = LocalDate.now();
         LocalDate nextFridayThe13th = date.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-        while (nextFridayThe13th.getDayOfMonth() != 13) {
+        while (nextFridayThe13th.getDayOfMonth() != THIRTEENTH) {
             nextFridayThe13th = nextFridayThe13th.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
         return nextFridayThe13th;

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringIncludesChecker {
 
-    Boolean stringInclude(String bigString, String smallString) {
+    public static Boolean stringInclude(String bigString, String smallString) {
         Pattern pattern = Pattern.compile(smallString);
         Matcher matcher = pattern.matcher(bigString);
         return matcher.find();

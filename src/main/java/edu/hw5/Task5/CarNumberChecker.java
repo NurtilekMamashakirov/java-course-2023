@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 public class CarNumberChecker {
 
     private final static Pattern PATTERN =
-        Pattern.compile("\"^([АВЕКМНОРСТУХ])[0-9]{3}([АВЕКМНОРСТУХ]){2}[0-9]{2,3}$\"");
+        Pattern.compile("^([АВЕКМНОРСТУХ])[0-9]{3}([АВЕКМНОРСТУХ]){2}[0-9]{2,3}$");
 
-    public boolean checkCarNumber(String carNumber) {
+    public static boolean checkCarNumber(String carNumber) {
         Matcher matcher = PATTERN.matcher(carNumber);
         return matcher.matches();
     }

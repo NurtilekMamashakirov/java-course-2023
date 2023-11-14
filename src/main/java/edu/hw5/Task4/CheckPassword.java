@@ -7,7 +7,7 @@ public class CheckPassword {
 
     private final static Pattern PATTERN = Pattern.compile(".*[~!@#$%^&*|].*");
 
-    boolean checkForSymbols(String password) {
+    public static boolean checkForSymbols(String password) {
         Matcher matcher = PATTERN.matcher(password);
         return matcher.matches();
     }

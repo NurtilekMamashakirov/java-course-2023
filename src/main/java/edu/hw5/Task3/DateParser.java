@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class DateParser {
 
-    private final static Pattern PATTERN = Pattern.compile("1 day ago");
+    private final static Pattern PATTERN = Pattern.compile("^(\\d+) days? ago$");
 
     public static Optional<LocalDate> parseDate(String string) {
         try {
@@ -20,7 +20,7 @@ public class DateParser {
         }
 
         try {
-            LocalDate date = LocalDate.parse(string, DateTimeFormatter.ofPattern("M/d/yyyy"));
+            LocalDate date = LocalDate.parse(string, DateTimeFormatter.ofPattern("d/M/yyyy"));
             return Optional.of(date);
         } catch (DateTimeParseException e) {
             // Date string does not match "M/d/yyyy" format, try other formats
@@ -44,7 +44,9 @@ public class DateParser {
 
         try {
             string = string.equalsIgnoreCase("today") ? "1" : string;
-            LocalDate date = LocalDate.now().plusDays(Long.parseLong(string)).minusDays(Long.parseLong(string));
+            LocalDate date = LocalDate.now()
+                .plusDays(Long.parseLong(string))
+                .minusDays(Long.parseLong(string));
             return Optional.of(date);
         } catch (NumberFormatException | DateTimeParseException e) {
             // Date string does not match "X day(s) ago" format or cannot be parsed as number
@@ -52,8 +54,9 @@ public class DateParser {
 
         try {
             Matcher matcher = PATTERN.matcher(string);
-            if (matcher.matches()) {
-                LocalDate date = LocalDate.now().minusDays(Long.parseLong(matcher.group(0)));
+            if (matcher.find()) {
+                LocalDate date = LocalDate.now()
+                    .minusDays(Integer.parseInt(matcher.group(1)));
                 return Optional.of(date);
             }
         } catch (NumberFormatException | DateTimeParseException e) {
@@ -62,4 +65,5 @@ public class DateParser {
 
         return Optional.empty();
     }
+
 }
