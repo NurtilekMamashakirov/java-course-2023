@@ -7,7 +7,7 @@ public class FileClonerTest {
 
     @Test
     void cloneFileTest() {
-        FileCloner.cloneFile(Paths.get("/Users/nurtilekm/Desktop/Презентации по лекцимя тинькофф/лекция 6.pdf"));
+        FileCloner.cloneFile(Paths.get("src/test/java/edu/hw6/task2/resources/lo.txt"));
     }
 
 }

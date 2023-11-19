@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class DiskMap implements Map<String, String> {
 
     private final Path PATH_TO_FILE =
-        Paths.get("/Users/nurtilekm/IdeaProjects/java-course-2023/src/main/java/edu/hw6/task1/DiscMapFile.txt");
+        Paths.get("src/main/java/edu/hw6/task1/DiscMapFile.txt");
     private Integer size = defineSize();
 
     @Override
