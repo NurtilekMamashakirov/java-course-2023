@@ -3,6 +3,10 @@ package edu.project1;
 import java.util.Random;
 
 public final class Dictionary {
+
+    private Dictionary() {
+    }
+
     private static final String[] WORDS = new String[] {
         "hello",
         "house",
