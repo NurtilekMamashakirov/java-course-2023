@@ -9,6 +9,7 @@ public class DayDateParseProcessor extends DataParseProcessor {
         super(nextDataParseProcessor);
     }
 
+    @SuppressWarnings("ReturnCount")
     @Override
     public Optional<LocalDate> isParsed(String stringDate) {
         if (stringDate.equalsIgnoreCase("yesterday")) {
