@@ -19,14 +19,14 @@ public class Composition {
     private final static String MESSAGE_TO_WRITE = "Programming is learned by writing programs. ― Brian Kernighan";
 
     public static void compose(String fileName) {
-        try (OutputStream outputStream = Files.newOutputStream(Paths.get(fileName))) {
-            CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new Adler32());
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
-                bufferedOutputStream,
-                StandardCharsets.UTF_8
-            );
-            PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+        try (OutputStream outputStream = Files.newOutputStream(Paths.get(fileName));
+             CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new Adler32());
+             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
+             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
+                 bufferedOutputStream,
+                 StandardCharsets.UTF_8
+             );
+             PrintWriter printWriter = new PrintWriter(outputStreamWriter)) {
             printWriter.write(MESSAGE_TO_WRITE);
         } catch (IOException e) {
             throw new RuntimeException();

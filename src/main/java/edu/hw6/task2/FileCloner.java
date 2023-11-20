@@ -7,11 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FileCloner {
 
     private FileCloner() {
     }
+
+    private final static Logger LOGGER = LogManager.getLogger();
 
     @SuppressWarnings("MultipleStringLiterals")
     public static void cloneFile(Path path) {
@@ -24,7 +28,7 @@ public class FileCloner {
         String regex = "^" + fileName + "( - копия( \\(\\d+\\))?)?\\." + fileExtension + "$";
         Pattern pattern = Pattern.compile(regex);
         int countCopiesOfFileInDirectory = 0;
-        Path directoryPath = getDirectoryPath(path);
+        Path directoryPath = Path.of(path.getParent().toString());
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
             for (Path file : stream) {
                 if (Files.isRegularFile(file)) {
@@ -56,14 +60,4 @@ public class FileCloner {
         }
     }
 
-    private static Path getDirectoryPath(Path filePath) {
-        StringBuilder buildDirectoryPath = new StringBuilder();
-        int pathSize = filePath.getNameCount();
-        for (int i = 0; i < pathSize - 1; i++) {
-            buildDirectoryPath.append("/")
-                .append(filePath.getName(i));
-        }
-        String stringDirectoryPath = buildDirectoryPath.toString();
-        return Paths.get(stringDirectoryPath);
-    }
 }

@@ -29,7 +29,7 @@ public class PortChecker {
         }
     }
 
-    private static void checkPort(int port, String protocol) {
+    public static void checkPort(int port, String protocol) {
         switch (protocol) {
             case TCP_PORT -> {
                 try (Socket socket = new Socket()) {
@@ -46,13 +46,12 @@ public class PortChecker {
                     LOGGER.info(protocol + "\t" + port + FOR_BUSY_PORT);
                 }
             }
-            default -> {
-            }
+            default -> throw new IllegalArgumentException("Wrong protocol!");
 
         }
     }
 
-    private static String getServiceName(int port) {
+    public static String getServiceName(int port) {
         PortsNames portsNames = new PortsNames();
         Map<Integer, String> dictionary = portsNames.getDictionary();
         if (dictionary.get(port) == null) {
