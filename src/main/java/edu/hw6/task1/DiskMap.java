@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class DiskMap implements Map<String, String> {
 
-    private final Path PATH_TO_FILE =
+    private final static Path PATH_TO_FILE =
         Paths.get("src/main/java/edu/hw6/task1/DiscMapFile.txt");
     private Integer size = defineSize();
 
@@ -41,7 +41,7 @@ public class DiskMap implements Map<String, String> {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return checkForContains;
     }
@@ -58,7 +58,7 @@ public class DiskMap implements Map<String, String> {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return checkForContains;
     }
@@ -73,7 +73,7 @@ public class DiskMap implements Map<String, String> {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return null;
     }
@@ -97,9 +97,8 @@ public class DiskMap implements Map<String, String> {
             Files.write(PATH_TO_FILE, lines, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
             return previousValue;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
@@ -116,9 +115,8 @@ public class DiskMap implements Map<String, String> {
             Files.write(PATH_TO_FILE, lines, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
             return previousValue;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
@@ -137,7 +135,7 @@ public class DiskMap implements Map<String, String> {
                 StandardOpenOption.TRUNCATE_EXISTING
             );
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         size = 0;
     }
@@ -149,9 +147,8 @@ public class DiskMap implements Map<String, String> {
             List<String> lines = Files.readAllLines(PATH_TO_FILE);
             return lines.stream().map(line -> line.split(":")[0]).collect(Collectors.toSet());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @NotNull
@@ -161,9 +158,8 @@ public class DiskMap implements Map<String, String> {
             List<String> lines = Files.readAllLines(PATH_TO_FILE);
             return lines.stream().map(line -> line.split(":")[1]).collect(Collectors.toSet());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @NotNull
@@ -172,13 +168,14 @@ public class DiskMap implements Map<String, String> {
         try {
             List<String> lines = Files.readAllLines(PATH_TO_FILE);
             Map<String, String> map = lines.stream()
-                .collect(Collectors.toMap(line -> line.split(":")[0]
-                    , line -> line.split(":")[1]));
+                .collect(Collectors.toMap(
+                    line -> line.split(":")[0],
+                    line -> line.split(":")[1]
+                ));
             return map.entrySet();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return null;
     }
 
     private Integer defineSize() {
@@ -186,8 +183,7 @@ public class DiskMap implements Map<String, String> {
             List<String> lines = Files.readAllLines(PATH_TO_FILE);
             return lines.size();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        return 0;
     }
 }

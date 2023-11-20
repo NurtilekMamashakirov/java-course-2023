@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 
 public class FileCloner {
 
+    private FileCloner() {
+    }
+
+    @SuppressWarnings("MultipleStringLiterals")
     public static void cloneFile(Path path) {
         if (!Files.isRegularFile(path)) {
             throw new IllegalArgumentException("It isn't regular file!");
@@ -31,7 +35,7 @@ public class FileCloner {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
 
         String copyName = "";
@@ -48,7 +52,7 @@ public class FileCloner {
         try {
             Files.copy(path, copyPath);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 

@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
 
 public class HackerNews {
 
+    private HackerNews() {
+    }
+
     private static final int CONST_SIZE = 100;
     private final static String URI_FORMAT_TO_GET_NEW_NAME = "https://hacker-news.firebaseio.com/v0/item/%s.json";
     private final static String URI_TO_GET_TOP_NEWS = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -32,9 +35,8 @@ public class HackerNews {
                 .mapToLong(Long::parseLong).toArray();
             return parsedResponse;
         } catch (URISyntaxException | IOException | InterruptedException e) {
-            e.printStackTrace();
+            return new long[CONST_SIZE];
         }
-        return new long[CONST_SIZE];
     }
 
     public static String news(Long id) {
@@ -49,9 +51,8 @@ public class HackerNews {
             String responseBody = response.body();
             return getName(responseBody);
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     private static String getName(String responseBody) {

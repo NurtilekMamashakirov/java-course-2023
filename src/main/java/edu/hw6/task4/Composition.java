@@ -13,6 +13,9 @@ import java.util.zip.CheckedOutputStream;
 
 public class Composition {
 
+    private Composition() {
+    }
+
     private final static String MESSAGE_TO_WRITE = "Programming is learned by writing programs. ― Brian Kernighan";
 
     public static void compose(String fileName) {
@@ -26,7 +29,7 @@ public class Composition {
             PrintWriter printWriter = new PrintWriter(outputStreamWriter);
             printWriter.write(MESSAGE_TO_WRITE);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }

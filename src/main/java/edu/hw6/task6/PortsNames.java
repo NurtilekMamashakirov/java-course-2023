@@ -7,12 +7,9 @@ public class PortsNames {
 
     private Map<Integer, String> dictionary;
 
+    @SuppressWarnings("MagicNumber")
     public PortsNames() {
-        dictionary = createDictionary();
-    }
-
-    private HashMap<Integer, String> createDictionary() {
-        HashMap<Integer, String> dictionary = new HashMap<>();
+        this.dictionary = new HashMap<>();
         dictionary.put(135, "EPMAP");
         dictionary.put(137, "Служба имен NetBIOS");
         dictionary.put(138, "Служба датаграмм NetBIOS");
@@ -23,7 +20,6 @@ public class PortsNames {
         dictionary.put(3702, "Динамическое обнаружение веб-служб");
         dictionary.put(5353, "Многоадресный DNS");
         dictionary.put(5355, "Link-Local Multicast Name Resolution (LLMNR)");
-        return dictionary;
     }
 
     public Map<Integer, String> getDictionary() {
