@@ -8,7 +8,7 @@ public class CarNumberChecker {
     private CarNumberChecker() {}
 
     private final static Pattern PATTERN =
-        Pattern.compile("^([АВЕКМНОРСТУХ])[0-9]{3}([АВЕКМНОРСТУХ]){2}[0-9]{2,3}$");
+        Pattern.compile("^([АВЕКМНОРСТУХ])\\d{3}([АВЕКМНОРСТУХ]){2}\\d{2,3}$");
 
     public static boolean checkCarNumber(String carNumber) {
         Matcher matcher = PATTERN.matcher(carNumber);

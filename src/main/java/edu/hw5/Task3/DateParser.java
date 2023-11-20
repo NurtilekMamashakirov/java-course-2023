@@ -1,5 +1,9 @@
 package edu.hw5.Task3;
 
+import edu.hw5.Task3.DateParseChain.DateWithDashParseProcessor;
+import edu.hw5.Task3.DateParseChain.DateWithSlashParseProcessor;
+import edu.hw5.Task3.DateParseChain.DayDateParseProcessor;
+import edu.hw5.Task3.DateParseChain.DaysAgoDateParseProcessor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,62 +16,17 @@ public class DateParser {
     private DateParser() {
     }
 
-    private final static Pattern PATTERN = Pattern.compile("^(\\d+) days? ago$");
-
     @SuppressWarnings("checkstyle:ReturnCount")
-    public static Optional<LocalDate> parseDate(String string) {
-        try {
-            LocalDate date = LocalDate.parse(string);
-            return Optional.of(date);
-        } catch (DateTimeParseException e) {
-            // Date string does not match ISO format, try other formats
-        }
-
-        try {
-            LocalDate date = LocalDate.parse(string, DateTimeFormatter.ofPattern("d/M/yyyy"));
-            return Optional.of(date);
-        } catch (DateTimeParseException e) {
-            // Date string does not match "M/d/yyyy" format, try other formats
-        }
-
-        try {
-            String formattedString = string.equalsIgnoreCase("tomorrow") ? "1" : string;
-            LocalDate date = LocalDate.now().plusDays(Long.parseLong(formattedString));
-            return Optional.of(date);
-        } catch (NumberFormatException | DateTimeParseException e) {
-            // Date string does not match "X day(s) ago" format or cannot be parsed as number
-        }
-
-        try {
-            String formattedString = string.equalsIgnoreCase("yesterday") ? "1" : string;
-            LocalDate date = LocalDate.now().minusDays(Long.parseLong(formattedString));
-            return Optional.of(date);
-        } catch (NumberFormatException | DateTimeParseException e) {
-            // Date string does not match "X day(s) ago" format or cannot be parsed as number
-        }
-
-        try {
-            String formattedString = string.equalsIgnoreCase("today") ? "1" : string;
-            LocalDate date = LocalDate.now()
-                .plusDays(Long.parseLong(formattedString))
-                .minusDays(Long.parseLong(formattedString));
-            return Optional.of(date);
-        } catch (NumberFormatException | DateTimeParseException e) {
-            // Date string does not match "X day(s) ago" format or cannot be parsed as number
-        }
-
-        try {
-            Matcher matcher = PATTERN.matcher(string);
-            if (matcher.find()) {
-                LocalDate date = LocalDate.now()
-                    .minusDays(Integer.parseInt(matcher.group(1)));
-                return Optional.of(date);
-            }
-        } catch (NumberFormatException | DateTimeParseException e) {
-            // Date string does not match "X day(s) ago" format or cannot be parsed as number
-        }
-
-        return Optional.empty();
+    public static Optional<LocalDate> parseDate(String stringDate) {
+        DaysAgoDateParseProcessor daysAgoDateParseProcessor =
+            new DaysAgoDateParseProcessor(null);
+        DayDateParseProcessor dayDateParseProcessor =
+            new DayDateParseProcessor(daysAgoDateParseProcessor);
+        DateWithSlashParseProcessor dateWithSlashParseProcessor =
+            new DateWithSlashParseProcessor(dayDateParseProcessor);
+        DateWithDashParseProcessor dateWithDashParseProcessor =
+            new DateWithDashParseProcessor(dateWithSlashParseProcessor);
+        return dateWithDashParseProcessor.isParsed(stringDate);
     }
 
 }

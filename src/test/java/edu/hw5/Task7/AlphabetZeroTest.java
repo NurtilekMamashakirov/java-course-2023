@@ -10,7 +10,7 @@ public class AlphabetZeroTest {
     static Arguments[] examplesAndExpectedForOne() {
         return new Arguments[] {
             Arguments.of("10001", true),
-            Arguments.of("О010101", false),
+            Arguments.of("0010101", false),
         };
     }
 
@@ -24,7 +24,7 @@ public class AlphabetZeroTest {
     static Arguments[] examplesAndExpectedForTwo() {
         return new Arguments[] {
             Arguments.of("10001", true),
-            Arguments.of("О010101", false),
+            Arguments.of("010101", false),
         };
     }
 
@@ -38,7 +38,7 @@ public class AlphabetZeroTest {
     static Arguments[] examplesAndExpectedForThree() {
         return new Arguments[] {
             Arguments.of("100", true),
-            Arguments.of("О010101", false),
+            Arguments.of("010101", false),
         };
     }
 
