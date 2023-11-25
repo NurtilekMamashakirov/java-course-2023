@@ -4,10 +4,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadStarter {
 
+    private final static int ITERATES = 1000;
+
     public int startThreads() {
         AtomicInteger counter = new AtomicInteger();
         Runnable plussing = () -> {
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < ITERATES; i++) {
                 counter.getAndIncrement();
             }
         };
@@ -22,7 +24,7 @@ public class ThreadStarter {
             thread2.join();
             thread3.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Something with threads. Please, fix it.");
         }
         return counter.get();
     }

@@ -30,7 +30,7 @@ public class MultiPiGenerator implements PiGenerator {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException("Something with threads. Please, fix it.");
             }
         }
         return COEFFICIENT * (double) circleCount / (double) totalCount;
