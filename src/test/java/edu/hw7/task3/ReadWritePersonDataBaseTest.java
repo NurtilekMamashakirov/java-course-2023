@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReadWritePersonDataBaseTest {
 
-    TinkoffPersonDataBase dataBase = new TinkoffPersonDataBase();
+    ReadWritePersonDataBase dataBase = new ReadWritePersonDataBase();
 
     Thread addThread1 = new Thread(() -> {
         Person person1 = new Person(1, "Valera", "Moscow", "88005553535");
