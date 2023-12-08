@@ -21,6 +21,7 @@ public class FixedThreadPoolTest {
         Thread.sleep(1000);
         threadPool.close();
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
+
     }
 
 
