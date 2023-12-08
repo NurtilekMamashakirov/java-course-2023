@@ -1,10 +1,10 @@
 package edu.hw8.task1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -12,13 +12,13 @@ public class ClientHandler implements Runnable {
 
     private final static InsultDictionary INSULT_DICTIONARY = new InsultDictionary();
     private Socket clientSocket;
-    private InputStream inputStream;
-    private OutputStream outputStream;
+    private BufferedReader reader;
+    private PrintWriter writer;
 
     public ClientHandler(Socket clientSocket) throws IOException {
         this.clientSocket = clientSocket;
-        inputStream = clientSocket.getInputStream();
-        outputStream = clientSocket.getOutputStream();
+        reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
     }
 
     @Override
@@ -26,17 +26,11 @@ public class ClientHandler implements Runnable {
         String theme = readRequest();
         String insult = INSULT_DICTIONARY.getInsult(theme);
         System.out.println(insult);
-        write();
+        writer.println(insult);
     }
 
-    private void write() {
-        try (PrintWriter writer = new PrintWriter(outputStream)) {
-            writer.write("lol");
-        }
-    }
-
-    private String readRequest() {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+    public String readRequest() {
+        try {
             return reader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);

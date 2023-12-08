@@ -17,14 +17,18 @@ public class Server extends Thread{
 
     @Override
     public void run() {
-        try (ServerSocket server = new ServerSocket(PORT)) {
-            for (int i = 0; i < MAX_CONNECTIONS; i++) {
+        try (ServerSocket server = new ServerSocket(PORT, MAX_CONNECTIONS)) {
+            while (true) {
                 ClientHandler clientHandler = new ClientHandler(server.accept());
                 executorService.execute(clientHandler);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void stopServer() {
+        Thread.currentThread().interrupt();
     }
 
 }
