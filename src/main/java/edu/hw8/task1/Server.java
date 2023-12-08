@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server extends Thread{
+public class Server extends Thread {
 
     private static final int PORT = 18080;
     private final static int MAX_CONNECTIONS = Runtime.getRuntime().availableProcessors();

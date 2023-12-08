@@ -25,7 +25,6 @@ public class ClientHandler implements Runnable {
     public void run() {
         String theme = readRequest();
         String insult = INSULT_DICTIONARY.getInsult(theme);
-        System.out.println(insult);
         writer.println(insult);
     }
 
