@@ -13,8 +13,14 @@ public class FixedThreadPoolTest {
         FixedThreadPool threadPool = FixedThreadPool.create(10);
         for (int i = 6; i < 8; i++) {
             final int numFinal = i;
-            threadPool.execute(() ->
-                actual.add(Fibonacci.getFibonacci(numFinal))
+            threadPool.execute(() -> {
+                    actual.add(Fibonacci.getFibonacci(numFinal));
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             );
         }
         threadPool.start();
@@ -23,7 +29,5 @@ public class FixedThreadPoolTest {
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
 
     }
-
-
 
 }
