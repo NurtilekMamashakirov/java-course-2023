@@ -19,17 +19,19 @@ public class FilesTreeWalkerTest {
     @Test
     void findByFileSizeTest() {
         Path path = Path.of("");
-        List<Path> expected = List.of(Path.of(".idea/.gitignore"));
-        List<Path> actual = FilesTreeWalker.findByFileSize(path, 1L, 60L);
+        List<Path> expected = List.of(Path.of("src/main/java/edu/project2/Coordinate.java"));
+        List<Path> actual = FilesTreeWalker.findByFileSize(path, 1L, 80L);
         assertThat(actual).containsAll(expected);
     }
 
     @Test
     void findByFileExtensionTest() {
         Path path = Path.of("");
-        assertThat(FilesTreeWalker.findByFileExtension(path, ".xml")).contains(Path.of(
-            "checkstyle.xml"),
-            Path.of("pom.xml"));
+        assertThat(FilesTreeWalker.findByFileExtension(path, ".xml")).contains(
+            Path.of(
+                "checkstyle.xml"),
+            Path.of("pom.xml")
+        );
     }
 
 }
