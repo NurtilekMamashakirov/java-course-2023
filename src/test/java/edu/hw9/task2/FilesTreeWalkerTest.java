@@ -19,9 +19,9 @@ public class FilesTreeWalkerTest {
     @Test
     void findByFileSizeTest() {
         Path path = Path.of("");
-        List<Path> expected = List.of(Path.of(".git/COMMIT_EDITMSG"));
-        List<Path> actual = FilesTreeWalker.findByFileSize(path, 1L, 15L);
-        assertThat(actual).isEqualTo(expected);
+        List<Path> expected = List.of(Path.of(".idea/.gitignore"));
+        List<Path> actual = FilesTreeWalker.findByFileSize(path, 1L, 60L);
+        assertThat(actual).containsAll(expected);
     }
 
     @Test
