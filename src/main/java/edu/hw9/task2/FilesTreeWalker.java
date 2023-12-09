@@ -15,7 +15,8 @@ public class FilesTreeWalker {
 
     private static final Pattern EXTENSION_PATTERN = Pattern.compile("^\\..*$");
 
-    public static List<Path> findDirectoriesWithMore1000Files(Path path) { //принимает директорию, с которой нужно начать поиск
+    public static List<Path> findDirectoriesWithMore1000Files(Path path) {
+        //принимает директорию, с которой нужно начать поиск
         RecursiveFileTreeIterator recursiveTreeIterator = new RecursiveFileTreeIterator(path);
         return recursiveTreeIterator.invoke();
     }
