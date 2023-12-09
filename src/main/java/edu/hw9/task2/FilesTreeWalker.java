@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
 
 public class FilesTreeWalker {
 
+    private FilesTreeWalker() {
+    }
+
     private static final Pattern EXTENSION_PATTERN = Pattern.compile("^\\..*$");
 
     public static List<Path> findDirectoriesWithMore1000Files(Path path) { //принимает директорию, с которой нужно начать поиск

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class RecursiveFileTreeIterator extends RecursiveTask<List<Path>> {
+
+    private static final int THOUSAND_FILES = 1000;
     private Path currentDirectory;
 
     public RecursiveFileTreeIterator(Path currentDirectory) {
@@ -29,7 +31,7 @@ public class RecursiveFileTreeIterator extends RecursiveTask<List<Path>> {
                             }
                         }
                     }
-                    if (filesCounter > 1000) {
+                    if (filesCounter > THOUSAND_FILES) {
                         directoriesWithMore1000Files.add(path);
                     }
                     RecursiveFileTreeIterator recursiveTreeIterator = new RecursiveFileTreeIterator(path);

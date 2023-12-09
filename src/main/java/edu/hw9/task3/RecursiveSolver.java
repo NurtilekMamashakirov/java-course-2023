@@ -37,25 +37,21 @@ public class RecursiveSolver extends RecursiveTask<List<Coordinate>> {
             RecursiveSolver recursiveSolver = new RecursiveSolver(currentCell, leftCell, endCell, maze);
             recursiveSolver.fork();
             path.addAll(recursiveSolver.join());
-            System.out.println("left added");
         }
         if (upCell != null && !upCell.equals(previousCell)) {
             RecursiveSolver recursiveSolver = new RecursiveSolver(currentCell, upCell, endCell, maze);
             recursiveSolver.fork();
             path.addAll(recursiveSolver.join());
-            System.out.println("up added");
         }
         if (rightCell != null && !rightCell.equals(previousCell)) {
             RecursiveSolver recursiveSolver = new RecursiveSolver(currentCell, rightCell, endCell, maze);
             recursiveSolver.fork();
             path.addAll(recursiveSolver.join());
-            System.out.println("right added");
         }
         if (downCell != null && !downCell.equals(previousCell)) {
             RecursiveSolver recursiveSolver = new RecursiveSolver(currentCell, downCell, endCell, maze);
             recursiveSolver.fork();
             path.addAll(recursiveSolver.join());
-            System.out.println("down added");
         }
         if (!path.isEmpty()) {
             path.add(new Coordinate(currentCell.getRow(), currentCell.getCol()));
