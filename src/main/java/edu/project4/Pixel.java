@@ -81,12 +81,12 @@ public class Pixel {
     }
 
     @Override public String toString() {
-        return "Pixel{" +
-            "counter=" + counter +
-            ", red=" + red +
-            ", green=" + green +
-            ", blue=" + blue +
-            '}';
+        return "Pixel{"
+            + "counter=" + counter
+            + ", red=" + red
+            + ", green=" + green
+            + ", blue=" + blue
+            + '}';
     }
 
 }

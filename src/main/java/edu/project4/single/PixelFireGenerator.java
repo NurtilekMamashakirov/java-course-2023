@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PixelFireGenerator implements PixelsGenerator {
 
+    private static final int START_ITERATIONS = -20;
     private static final int NUM_OF_COEFFICIENTS = 30;
     private static final double X_MIN = -1.777;
     private static final double X_MAX = 1.777;
@@ -34,7 +35,7 @@ public class PixelFireGenerator implements PixelsGenerator {
         for (int num = 0; num < n; num++) {
             double newX = ThreadLocalRandom.current().nextDouble(X_MIN, X_MAX);
             double newY = ThreadLocalRandom.current().nextDouble(Y_MIN, Y_MAX);
-            for (int step = -20; step < it; step++) {
+            for (int step = START_ITERATIONS; step < it; step++) {
                 Coefficient coefficient = coefficients.get(ThreadLocalRandom.current().nextInt(NUM_OF_COEFFICIENTS));
                 double x = coefficient.a() * newX + coefficient.b() * newY + coefficient.c();
                 double y = coefficient.d() * newX + coefficient.e() * newY + coefficient.f();
