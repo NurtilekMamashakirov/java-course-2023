@@ -7,8 +7,8 @@ import net.bytebuddy.implementation.Implementation;
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 import net.bytebuddy.jar.asm.Label;
 import net.bytebuddy.jar.asm.MethodVisitor;
-import org.jetbrains.annotations.NotNull;
 import net.bytebuddy.jar.asm.Opcodes;
+import org.jetbrains.annotations.NotNull;
 
 public final class Task3 {
     private Task3() {
